@@ -227,4 +227,3 @@ videoSize.isVideoFile = isVideoFile;
 videoSize.sync = videoSizeSync;
 
 export const sync = videoSizeSync;
-export default videoSize;
