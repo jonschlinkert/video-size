@@ -322,12 +322,16 @@ async function videoSize(filepath) {
   });
 }
 __name(videoSize, "videoSize");
+videoSize.isVideoFile = isVideoFile;
 videoSize.sync = videoSizeSync;
 var sync = videoSizeSync;
 export {
   VIDEO_EXTS,
   extractDimensions,
+  extractOrientation,
   isVideoFile,
+  normalizeRotation,
+  parseRotation,
   sync,
   videoRegex,
   videoSize,

@@ -23,7 +23,10 @@ var index_exports = {};
 __export(index_exports, {
   VIDEO_EXTS: () => VIDEO_EXTS,
   extractDimensions: () => extractDimensions,
+  extractOrientation: () => extractOrientation,
   isVideoFile: () => isVideoFile,
+  normalizeRotation: () => normalizeRotation,
+  parseRotation: () => parseRotation,
   sync: () => sync,
   videoRegex: () => videoRegex,
   videoSize: () => videoSize,
@@ -352,13 +355,17 @@ async function videoSize(filepath) {
   });
 }
 __name(videoSize, "videoSize");
+videoSize.isVideoFile = isVideoFile;
 videoSize.sync = videoSizeSync;
 var sync = videoSizeSync;
 // Annotate the CommonJS export names for ESM import in node:
 0 && (module.exports = {
   VIDEO_EXTS,
   extractDimensions,
+  extractOrientation,
   isVideoFile,
+  normalizeRotation,
+  parseRotation,
   sync,
   videoRegex,
   videoSize,

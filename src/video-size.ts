@@ -14,6 +14,24 @@ export interface VideoSizeFunction {
   sync(filepath: string): VideoDimensions; // eslint-disable-line
 }
 
+export interface FFprobeSideData {
+  rotation?: number | string;
+}
+
+export interface FFprobeStream {
+  width?: number;
+  height?: number;
+  tags?: {
+    rotate?: string;
+  };
+  side_data_list?: FFprobeSideData[];
+}
+
+export interface FFprobeOutput {
+  streams?: FFprobeStream[];
+}
+
+
 export const VIDEO_EXTS = new Set([
   '264',
   '265',
@@ -86,24 +104,7 @@ const defaultArgs = [
   'json'
 ];
 
-interface FFprobeSideData {
-  rotation?: number | string;
-}
-
-interface FFprobeStream {
-  width?: number;
-  height?: number;
-  tags?: {
-    rotate?: string;
-  };
-  side_data_list?: FFprobeSideData[];
-}
-
-interface FFprobeOutput {
-  streams?: FFprobeStream[];
-}
-
-function normalizeRotation(rotation: number): number | null {
+export function normalizeRotation(rotation: number): number | null {
   if (!Number.isFinite(rotation)) {
     return null;
   }
@@ -118,7 +119,7 @@ function normalizeRotation(rotation: number): number | null {
   return quarterTurns * 90;
 }
 
-function parseRotation(stream: FFprobeStream): number | null {
+export function parseRotation(stream: FFprobeStream): number | null {
   const sideDataRotation = stream.side_data_list?.find(sideData => sideData.rotation != null)?.rotation;
 
   if (sideDataRotation != null) {
@@ -141,7 +142,7 @@ function parseRotation(stream: FFprobeStream): number | null {
   return null;
 }
 
-function extractOrientation(
+export function extractOrientation(
   stream: FFprobeStream,
   width: number,
   height: number
@@ -222,6 +223,7 @@ export async function videoSize(filepath: string): Promise<VideoDimensions> {
   });
 }
 
+videoSize.isVideoFile = isVideoFile;
 videoSize.sync = videoSizeSync;
 
 export const sync = videoSizeSync;

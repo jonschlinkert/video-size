@@ -15,12 +15,14 @@ async function makeVideo(
   height: number
 ): Promise<string> {
   const filepath = fixture(filename);
+  if (fs.existsSync(filepath)) return filepath;
   await createFakeVideoFile(filepath, { width, height });
   return filepath;
 }
 
 async function makeNonVideo(filename: string): Promise<string> {
   const filepath = fixture(filename);
+  if (fs.existsSync(filepath)) return filepath;
   await fs.promises.writeFile(filepath, 'This is not a video file.\n');
   return filepath;
 }
