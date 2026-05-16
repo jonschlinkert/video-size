@@ -1,0 +1,72 @@
+{
+  "name": "video-size",
+  "description": "Get the width and height of a video.",
+  "version": "2.0.0",
+  "homepage": "https://github.com/jonschlinkert/video-size",
+  "author": "Jon Schlinkert (https://github.com/jonschlinkert)",
+  "repository": "jonschlinkert/video-size",
+  "bugs": {
+    "url": "https://github.com/jonschlinkert/video-size/issues"
+  },
+  "license": "MIT",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "clean": "rm -rf dist",
+    "eslint": "npx eslint --ext .ts .",
+    "test": "mocha --import=tsx 'test/**/*.test.ts' --exit",
+    "tsup": "npm run clean && npx tsup"
+  },
+  "exports": {
+    ".": {
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js"
+    },
+    "./*": {
+      "import": "./dist/*.mjs",
+      "require": "./dist/*.js"
+    }
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "@types/node": "^25.6.0",
+    "eslint": "^10.2.1",
+    "globals": "^17.5.0",
+    "mocha": "^11.7.5",
+    "prettier": "^3.8.3",
+    "tsup": "^8.5.1",
+    "tsx": "^4.22.0",
+    "typescript": "^6.0.3",
+    "typescript-eslint": "^8.58.2"
+  },
+  "keywords": [
+    "dimensions",
+    "height",
+    "size",
+    "ffmpeg",
+    "ffprobe",
+    "media",
+    "video",
+    "video-size",
+    "width"
+  ],
+  "verb": {
+    "toc": false,
+    "layout": "default",
+    "tasks": [
+      "readme"
+    ],
+    "plugins": [
+      "gulp-format-md"
+    ],
+    "reflinks": [
+      "verb"
+    ],
+    "lint": {
+      "reflinks": true
+    }
+  }
+}
